@@ -23,6 +23,8 @@
             Nombre del esquema:
             <input type="text" name="nombre"/>
             <br>
+            <br>
+         
             <input type="submit" class="btn btn-info" name="Enviar"/>
             <a class="btn btn-info" href="Tabla.jsp" role="button">Crear Tabla</a>
             <a class="btn btn-info" href="index.jsp" role="button">Inicio</a>
