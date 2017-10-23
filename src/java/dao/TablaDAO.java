@@ -19,7 +19,7 @@ public class TablaDAO {
     }
 
     public boolean addTabla(Tabla tabla) throws SQLException {
-          boolean result = false;
+        boolean result = false;
         Connection connection = DbUtil.getConnection();
         String query = "insert into tabla (tabla.nombre_tabla,tabla.id_esquema) values (?, ? );";
         PreparedStatement preparedStmt = null;
@@ -71,16 +71,16 @@ public class TablaDAO {
     }
 
     public List<Tabla> getAllTables() throws SQLException {
-      List<Tabla> tabla = null;
-      boolean result = false;
+        List<Tabla> tabla = null;
+        boolean result = false;
         String query = "SELECT * FROM tabla";
         Connection connection = DbUtil.getConnection();
         try {
-            
+
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
-           
-            int id =0;
+
+            int id = 0;
             String nombre = null;
             int id_esquema = 0;
 
@@ -88,23 +88,23 @@ public class TablaDAO {
                 if (tabla == null) {
                     tabla = new ArrayList<Tabla>();
                 }
-                Tabla registro = new Tabla(nombre,id_esquema);
+                Tabla registro = new Tabla(nombre, id_esquema);
                 id = rs.getInt("id_tabla");
                 registro.setId_tabla(id);
 
                 nombre = rs.getString("nombre_tabla");
                 registro.setNombre_tabla(nombre);
-                
+
                 id_esquema = rs.getInt("id_esquema");
                 registro.setId_esquema(id_esquema);
-
 
                 tabla.add(registro);
 
             }
-             if(tabla!=null)
-            for (int i = 0; i < tabla.size(); i++) {
-                System.out.println(tabla.get(i).getId_tabla() + " " + tabla.get(i).getNombre_tabla()+" "+tabla.get(i).getId_esquema());
+            if (tabla != null) {
+                for (int i = 0; i < tabla.size(); i++) {
+                    System.out.println(tabla.get(i).getId_tabla() + " " + tabla.get(i).getNombre_tabla() + " " + tabla.get(i).getId_esquema());
+                }
             }
             st.close();
 
@@ -114,7 +114,53 @@ public class TablaDAO {
         }
 
         return tabla;
-    
+
     }
-  
+
+    public List<Tabla> getAllTablesId(int a) throws SQLException {
+        List<Tabla> tabla = null;
+        boolean result = false;
+        String query = "select tabla.id_tabla,tabla.nombre_tabla,columna.nombre_columna from tabla,columna where columna.id_tabla=tabla.id_tabla and tabla.id_tabla="+a;
+        Connection connection = DbUtil.getConnection();
+        try {
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+
+            int id_tabla = 0;
+            String nombre_tabla = null;
+            String nombre_columna = null;
+
+            while (rs.next()) {
+                if (tabla == null) {
+                    tabla = new ArrayList<Tabla>();
+                }
+                Tabla registro = new Tabla(id_tabla, nombre_tabla, nombre_columna);
+                id_tabla = rs.getInt("id_tabla");
+                registro.setId_tabla(id_tabla);
+
+                nombre_tabla = rs.getString("nombre_tabla");
+                registro.setNombre_tabla(nombre_tabla);
+
+                nombre_columna = rs.getString("nombre_columna");
+                registro.setNombre_columna(nombre_columna);
+
+                tabla.add(registro);
+
+            }
+            if (tabla != null) {
+                for (int i = 0; i < tabla.size(); i++) {
+                    System.out.println(tabla.get(i).getId_tabla() + " " + tabla.get(i).getNombre_tabla() + " " + tabla.get(i).getNombre_columna());
+                }
+            }
+            st.close();
+
+        } catch (SQLException e) {
+            System.out.println("Problemas al obtener la lista de Tablas");
+            e.printStackTrace();
+        }
+
+        return tabla;
+
+    }
+
 }
