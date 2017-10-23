@@ -9,13 +9,13 @@ package model;
  *
  * @author LabingXEON
  */
-public class UnidadAbstractaInformacion {
+public class UnidadAbstractaInformacionn {
     
     private int id_unidadabs;
     private int id_contexto;
     private int id_tabla;
 
-    public UnidadAbstractaInformacion(int id_contexto, int id_tabla) {
+    public UnidadAbstractaInformacionn(int id_contexto, int id_tabla) {
         this.id_contexto = id_contexto;
         this.id_tabla = id_tabla;
     }

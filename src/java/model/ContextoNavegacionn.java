@@ -9,15 +9,13 @@ package model;
  *
  * @author LabingXEON
  */
-public class ContextoNavegacion {
+public class ContextoNavegacionn {
     private int id_contexto;
     private String link;
-    private int id_unidadAbs;
     private int id_modeloNaveg;
 
-    public ContextoNavegacion(String link, int id_unidadAbs, int id_modeloNaveg) {
+    public ContextoNavegacionn(String link, int id_modeloNaveg) {
         this.link = link;
-        this.id_unidadAbs = id_unidadAbs;
         this.id_modeloNaveg = id_modeloNaveg;
     }
 
@@ -35,14 +33,6 @@ public class ContextoNavegacion {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public int getId_unidadAbs() {
-        return id_unidadAbs;
-    }
-
-    public void setId_unidadAbs(int id_unidadAbs) {
-        this.id_unidadAbs = id_unidadAbs;
     }
 
     public int getId_modeloNaveg() {

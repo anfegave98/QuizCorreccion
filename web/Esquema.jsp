@@ -26,7 +26,7 @@
             <br>
          
             <input type="submit" class="btn btn-info" name="Enviar"/>
-            <a class="btn btn-info" href="Tabla.jsp" role="button">Crear Tabla</a>
+            <a class="btn btn-info" href="Tablas" role="button">Crear Tabla</a>
             <a class="btn btn-info" href="index.jsp" role="button">Inicio</a>
         </form>
         <h1>Esquemas</h1>
